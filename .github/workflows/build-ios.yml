@@ -1,0 +1,41 @@
+name: Build iOS IPAs
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version
+        required: true
+        default: 0.1.0
+      deployment_target:
+        description: Minimum iOS version
+        required: true
+        default: 13.0
+      release_notes:
+        description: Manual release notes
+        required: false
+        default: ""
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: theos/sdks
+          path: theos-sdks
+      - name: Build every available iPhoneOS SDK
+        env:
+          THEOS_SDKS: ${{ github.workspace }}/theos-sdks/sdks
+        run: |
+          shopt -s nullglob
+          for sdk in "$THEOS_SDKS"/iPhoneOS*.sdk; do
+            version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
+            ./build/local/build-ios.sh --sdk "$version" --target "${{ inputs.deployment_target }}" --arch arm64
+          done
+      - name: Publish IPAs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ inputs.version }}" build/out/*.ipa --title "AltSource Center v${{ inputs.version }}" --notes "${{ inputs.release_notes }}"
