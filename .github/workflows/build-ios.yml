@@ -75,6 +75,10 @@ PY
             built=$((built+1))
           done
 
+          if ! compgen -G "build/all/*.ipa" > /dev/null; then
+            echo "No usable device iOS SDK produced an IPA." >&2
+            exit 1
+          fi
           if [ "$found" -eq 0 ]; then
             echo "No iPhoneOS*.sdk directories were found." >&2
             exit 1
