@@ -21,25 +21,34 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - name: Checkout Theos SDK repository
+        uses: actions/checkout@v4
         with:
           repository: theos/sdks
           path: theos-sdks
+          sparse-checkout: |
+            iPhoneOS*.sdk
+          sparse-checkout-cone-mode: false
       - name: Build every available iPhoneOS SDK
         env:
-          THEOS_SDKS: ${{ github.workspace }}/theos-sdks/sdks
+          THEOS_SDKS: ${{ github.workspace }}/theos-sdks
         run: |
           set -e
           mkdir -p build/all
-          shopt -s nullglob
           found=0
+          shopt -s nullglob
           for sdk in "$THEOS_SDKS"/iPhoneOS*.sdk; do
             found=1
             version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
+            echo "==> Building iOS SDK $version"
             ./build/local/build-ios.sh --sdk "$version" --target "${{ inputs.deployment_target }}" --arch arm64
             cp build/out/*.ipa "build/all/AltSourceCenter-iOS-$version-arm64.ipa"
           done
-          test "$found" -eq 1
+          if [ "$found" -eq 0 ]; then
+            echo "No iPhoneOS*.sdk directories were found." >&2
+            find "$THEOS_SDKS" -maxdepth 2 -type d -name '*.sdk' -print >&2
+            exit 1
+          fi
       - name: Publish IPAs
         env:
           GH_TOKEN: ${{ github.token }}
