@@ -17,6 +17,12 @@ done
 if [ -z "$SDK" ]; then SDK="$(find "$SDKROOT" -maxdepth 1 -type d -name 'iPhoneOS*.sdk' -print | sed 's#.*/##; s#\.sdk$##' | sort -V | tail -1 | sed 's/^iPhoneOS//')"; fi
 [ -n "$SDK" ] || { echo "No iPhoneOS SDK found in $SDKROOT" >&2; exit 1; }
 SDKPATH="$SDKROOT/iPhoneOS$SDK.sdk"; [ -d "$SDKPATH" ] || { echo "SDK not found: $SDKPATH" >&2; exit 1; }
+UIKIT_TBD="$SDKPATH/System/Library/Frameworks/UIKit.framework/UIKit.tbd"
+if [ -f "$UIKIT_TBD" ] && grep -q 'platform: ios-simulator' "$UIKIT_TBD"; then
+ echo "ERROR: iPhoneOS$SDK.sdk contains a simulator UIKit.tbd and cannot be used for a device IPA." >&2
+ echo "This SDK is being skipped by the multi-SDK workflow." >&2
+ exit 3
+fi
 CLANG="$(xcrun --find clang 2>/dev/null || command -v clang)"
 rm -rf "$OUT" "$WORK"; mkdir -p "$OUT" "$WORK" "$WORK/Payload/AltSourceCenter.app"
 cp "$ROOT/Info.plist" "$WORK/Payload/AltSourceCenter.app/Info.plist"
