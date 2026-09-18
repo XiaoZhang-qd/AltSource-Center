@@ -1,0 +1,5 @@
+build/out/
+build/work/
+.DS_Store
+*.ipa
+*.zip
