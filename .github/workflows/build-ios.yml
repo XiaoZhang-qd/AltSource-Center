@@ -1,51 +1,58 @@
 name: Build iOS IPAs
-on:
+
+"on":
   workflow_dispatch:
     inputs:
       version:
         description: Release version
         required: true
-        default: 0.1.0
+        type: string
+        default: "0.1.0"
       deployment_target:
         description: Requested minimum iOS version
         required: true
-        default: 13.0
+        type: string
+        default: "13.0"
       release_notes:
         description: Manual release notes
         required: false
+        type: string
         default: ""
+
 permissions:
   contents: write
+
 jobs:
   build:
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout AltSource Center
+        uses: actions/checkout@v4
+
       - name: Checkout Theos SDK repository
         uses: actions/checkout@v4
         with:
           repository: theos/sdks
           path: theos-sdks
           fetch-depth: 1
+
       - name: Build every usable iPhoneOS SDK
         env:
           THEOS_SDKS: ${{ github.workspace }}/theos-sdks
           REQUESTED_TARGET: ${{ inputs.deployment_target }}
+        shell: bash
         run: |
           set -euo pipefail
           mkdir -p build/all build/skipped
           found=0
           built=0
           shopt -s nullglob
+
           for sdk in "$THEOS_SDKS"/iPhoneOS*.sdk; do
             found=1
             version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
             echo "==> Checking iOS SDK $version"
 
-            # Theos documents that the 9.3/10.3 SDKs in this repository have
-            # simulator .tbd metadata and therefore cannot be linked as device SDKs
-            # with modern ld. Skip those known-broken device SDKs instead of failing
-            # the entire multi-SDK build.
             uikit="$sdk/System/Library/Frameworks/UIKit.framework/UIKit.tbd"
             if [ -f "$uikit" ] && grep -q 'ios-simulator' "$uikit"; then
               echo "::warning::Skipping iPhoneOS$version.sdk: UIKit.tbd is marked ios-simulator."
@@ -53,36 +60,34 @@ jobs:
               continue
             fi
 
-            # A deployment target cannot be newer than the SDK being used.
             effective_target="$(
               python3 - "$REQUESTED_TARGET" "$version" <<'PY'
 import sys
 from decimal import Decimal
-requested=Decimal(sys.argv[1])
-sdk=Decimal(sys.argv[2])
+requested = Decimal(sys.argv[1])
+sdk = Decimal(sys.argv[2])
 print(f"{min(requested, sdk):.1f}")
 PY
             )"
 
             echo "==> Building iOS SDK $version with deployment target $effective_target"
             bash ./build/local/build-ios.sh --sdk "$version" --target "$effective_target" --arch arm64
+
             ipa=(build/out/*.ipa)
             if [ "${#ipa[@]}" -ne 1 ]; then
               echo "Expected exactly one IPA for SDK $version, found ${#ipa[@]}" >&2
               exit 1
             fi
+
             cp "${ipa[0]}" "build/all/AltSourceCenter-iOS-$version-arm64.ipa"
             built=$((built+1))
           done
 
-          if ! compgen -G "build/all/*.ipa" > /dev/null; then
-            echo "No usable device iOS SDK produced an IPA." >&2
-            exit 1
-          fi
           if [ "$found" -eq 0 ]; then
             echo "No iPhoneOS*.sdk directories were found." >&2
             exit 1
           fi
+
           if [ "$built" -eq 0 ]; then
             echo "No usable iPhoneOS SDKs were built." >&2
             cat build/skipped/sdk.txt 2>/dev/null || true
@@ -94,9 +99,13 @@ PY
             echo "Skipped SDKs:"
             cat build/skipped/sdk.txt
           fi
+
       - name: Publish IPAs
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
           set -euo pipefail
-          gh release create "v${{ inputs.version }}" build/all/*.ipa --title "AltSource Center v${{ inputs.version }}" --notes "${{ inputs.release_notes }}"
+          gh release create "v${{ inputs.version }}" build/all/*.ipa \
+            --title "AltSource Center v${{ inputs.version }}" \
+            --notes "${{ inputs.release_notes }}"
