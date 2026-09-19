@@ -1,0 +1,54 @@
+name: Update Release Notes
+
+on:
+  workflow_run:
+    workflows: ["Build iOS IPAs (manual)"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  notes:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          TAG="v2.0.0"
+          REPO="${{ github.repository }}"
+          ASSETS="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].url' 2>/dev/null || true)"
+          {
+            echo "## iOS build"
+            echo
+            echo "### IPA assets"
+            if [ -n "$ASSETS" ]; then
+              echo "$ASSETS" | while IFS= read -r url; do echo "- $url"; done
+            else
+              echo "- No IPA asset URL was returned by GitHub."
+            fi
+            echo
+            echo "### Source URL protocols"
+            echo "- altstore-classic://source?url="
+            echo "- sidestore://source?url="
+            echo "- feather://source/"
+            echo "- livecontainer://sources?url="
+            echo "- stikstore://add-source?url="
+            echo "- trollapps://add?url="
+            echo "- flarestore://source?url="
+            echo "- esign://addsource?url="
+            echo "- ksign://addsource?url="
+            echo "- gbox://AddSource/"
+            echo "- kravasigner://addRepo="
+            echo
+            echo "### IPA URL protocols"
+            echo "- altstore://install?url="
+            echo "- sidestore://install?url="
+            echo "- feather://install/"
+            echo "- esign://install?url="
+            echo "- ksign://install?url="
+          } > release-notes.md
+          gh release edit "$TAG" --repo "$REPO" --notes-file release-notes.md
