@@ -2,7 +2,7 @@
 
 A C11-first, local-first AltSource browser for iPhone/iPad.
 
-Web: https://xiaozhang-qd.github.io/AltSource-Center/
+Web: https://xiaozhang-qd.github.io/AltSource-Center/web
 
 Releases: https://github.com/XiaoZhang-qd/AltSource-Center/releases
 
