@@ -18,7 +18,17 @@ const save=()=>localStorage.setItem("ASC.sources",JSON.stringify(S.sources));
 const handlerURL=(h,u)=>h.source+(h.id==="feather"||h.id==="gbox"?u:encodeURIComponent(u));
 const installURL=(h,u)=>h.install+(h.id==="feather"?u:encodeURIComponent(u));
 const openURL=u=>{if(u)location.href=u};
-async function readSource(u){const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);return r.json()}
+async function readSource(u){
+if(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.fetchJSON){
+return new Promise(function(resolve,reject){
+window.ASCBridgeResolve=function(status,b64,error){
+if(status<200||status>=300){reject(Error(error||("HTTP "+status)));return}
+try{const bytes=Uint8Array.from(atob(b64),function(c){return c.charCodeAt(0)});resolve(JSON.parse(new TextDecoder().decode(bytes)))}catch(e){reject(e)}
+};
+window.webkit.messageHandlers.fetchJSON.postMessage(u);
+});
+}
+const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);return r.json()}
 function sourceCard(s){return '<div class="card"><h3>'+esc(s.name)+'</h3><p class="muted">'+esc(s.url)+'</p><p>'+(s.apps||[]).length+' apps</p><button onclick="showSource(\''+encodeURIComponent(s.url)+'\')">Browse</button> <button onclick="sourceLinks(\''+encodeURIComponent(s.url)+'\')">Add to…</button> <button onclick="removeSource(\''+encodeURIComponent(s.url)+'\')">Remove</button></div>'}
 function appCard(a,s){const v=a.versions&&a.versions[0]||a;return '<div class="card"><h3>'+esc(a.name||a.identifier)+'</h3><p class="muted">'+esc(a.developerName||a.developer||'')+' '+esc(v.version||'')+'</p><p>'+esc(a.localizedDescription||a.description||'')+'</p><button onclick="getApp(\''+encodeURIComponent(s.url)+'\',\''+encodeURIComponent(a.bundleIdentifier||a.identifier||'')+'\')">Get</button> <button onclick="sourceLinks(\''+encodeURIComponent(s.url)+'\')">Add Source</button></div>'}
 window.sourceLinks=function(u){u=decodeURIComponent(u);$("#modalBody").innerHTML="<h2>Add to…</h2>"+H.map(h=>'<button class="handler" onclick="openHandler(\''+h.id+'\',\''+encodeURIComponent(u)+'\')"><b>'+h.name+'</b><small>'+h.source+'</small></button>').join("");$("#modal").classList.remove("hidden")};
