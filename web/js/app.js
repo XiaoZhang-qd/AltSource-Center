@@ -1,9 +1,11 @@
 const DEFAULT_HANDLERS=[{id:"altstore",name:"AltStore Classic / PAL",source:"altstore-classic://source?url=",install:"altstore://install?url=",icon:"A"},{id:"sidestore",name:"SideStore",source:"sidestore://source?url=",install:"sidestore://install?url=",icon:"S"},{id:"feather",name:"Feather",source:"feather://source/",install:"feather://install/",icon:"F"},{id:"livecontainer",name:"LiveContainer",source:"livecontainer://sources?url=",install:"livecontainer://install?url=",icon:"L"},{id:"stikstore",name:"StikStore",source:"stikstore://add-source?url=",install:"",icon:"ST"},{id:"trollapps",name:"TrollApps",source:"trollapps://add?url=",install:"",icon:"T"},{id:"flarestore",name:"FlareStore",source:"flarestore://source?url=",install:"",icon:"FL"},{id:"esign",name:"ESign",source:"esign://addsource?url=",install:"esign://install?url=",icon:"E"},{id:"ksign",name:"Ksign",source:"ksign://addsource?url=",install:"ksign://install?url=",icon:"K"},{id:"gbox",name:"GBox",source:"gbox://AddSource/",install:"",icon:"G"},{id:"kravasigner",name:"KravaSigner",source:"kravasigner://addRepo=",install:"",icon:"K"}];
-const savedHandlers=JSON.parse(localStorage.getItem("ASC.handlers")||"[]");
-const H=DEFAULT_HANDLERS.map(d=>{const x=savedHandlers.find(v=>v.id===d.id);return x?{...d,...x}:d});
-const S={sources:JSON.parse(localStorage.getItem("ASC.sources")||"[]")};
-const PROFILE=JSON.parse(localStorage.getItem("ASC.profile")||'{"name":"XiaoZhang-qd","github":"https://github.com/XiaoZhang-qd/AltSource-Center"}');
-const state={lang:localStorage.getItem("ASC.language")||"en",page:"home",theme:localStorage.getItem("ASC.theme")||"system"};
+const readJSON=(key,fallback)=>{try{const raw=localStorage.getItem(key);if(!raw)return fallback;const value=JSON.parse(raw);return value??fallback}catch(e){try{localStorage.removeItem(key)}catch(_){}return fallback}};
+const readString=(key,fallback)=>{try{return localStorage.getItem(key)||fallback}catch(e){return fallback}};
+const savedHandlers=readJSON("ASC.handlers",[]);
+const H=DEFAULT_HANDLERS.map(d=>{const x=savedHandlers.find(v=>v&&v.id===d.id);return x?{...d,...x}:d});
+const S={sources:readJSON("ASC.sources",[])};
+const PROFILE=readJSON("ASC.profile",{name:"XiaoZhang-qd",github:"https://github.com/XiaoZhang-qd/AltSource-Center"});
+const state={lang:readString("ASC.language","en"),page:"home",theme:readString("ASC.theme","system")};
 const $=s=>document.querySelector(s);
 const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 const url=x=>/^https?:\/\//i.test(x)?x:"https://"+x;
