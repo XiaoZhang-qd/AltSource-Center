@@ -11,6 +11,7 @@ extern const char *asc_core_version(void);
 @implementation ASCBridge
 - (void)userContentController:(WKUserContentController *)controller didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString:@"exportFile"]) { NSDictionary *p=[message.body isKindOfClass:[NSString class]]?[NSJSONSerialization JSONObjectWithData:[message.body dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]:nil; NSString *name=[p[@"name"] isKindOfClass:[NSString class]]?p[@"name"]:@"altsource-center-sources.json"; NSString *content=[p[@"content"] isKindOfClass:[NSString class]]?p[@"content"]:@""; NSURL *file=[NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:name]]; [content writeToURL:file atomically:YES encoding:NSUTF8StringEncoding error:nil]; dispatch_async(dispatch_get_main_queue(),^{ UIActivityViewController *vc=[[UIActivityViewController alloc] initWithActivityItems:@[file] applicationActivities:nil]; [self.webView.window.rootViewController presentViewController:vc animated:YES completion:nil]; }); return; }
+    if ([message.name isEqualToString:@"copyText"]) { NSString *value=[message.body isKindOfClass:[NSString class]]?message.body:@""; if(value.length){ UIPasteboard.generalPasteboard.string=value; } return; }
     if ([message.name isEqualToString:@"openURL"]) { NSString *value=[message.body isKindOfClass:[NSString class]]?message.body:nil; NSURL *u=value.length?[NSURL URLWithString:value]:nil; if(u) dispatch_async(dispatch_get_main_queue(),^{ [[UIApplication sharedApplication] openURL:u options:@{} completionHandler:nil]; }); return; }
     if (![message.name isEqualToString:@"fetchJSON"]) return;
     NSString *urlString=[message.body isKindOfClass:[NSString class]]?message.body:nil;
@@ -44,7 +45,7 @@ extern const char *asc_core_version(void);
     self.webView=[[WKWebView alloc] initWithFrame:CGRectMake(0,0,1,1) configuration:config];
     self.bridge=[ASCBridge new]; self.bridge.webView=self.webView;
     [config.userContentController addScriptMessageHandler:self.bridge name:@"fetchJSON"];
-    [config.userContentController addScriptMessageHandler:self.bridge name:@"openURL"]; [config.userContentController addScriptMessageHandler:self.bridge name:@"exportFile"];
+    [config.userContentController addScriptMessageHandler:self.bridge name:@"openURL"]; [config.userContentController addScriptMessageHandler:self.bridge name:@"copyText"]; [config.userContentController addScriptMessageHandler:self.bridge name:@"exportFile"];
     self.webView.scrollView.pinchGestureRecognizer.enabled=NO;
     self.webView.scrollView.panGestureRecognizer.maximumNumberOfTouches=2;
     self.view=self.webView;
@@ -55,7 +56,7 @@ extern const char *asc_core_version(void);
     NSURL *webURL=[[NSBundle mainBundle] URLForResource:@"web" withExtension:nil];
     if(indexURL&&webURL)[self.webView loadFileURL:indexURL allowingReadAccessToURL:webURL];
 }
-- (void)dealloc { [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"fetchJSON"]; [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openURL"]; [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"exportFile"]; }
+- (void)dealloc { [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"fetchJSON"]; [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"openURL"]; [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"copyText"]; [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"exportFile"]; }
 @end
 
 @interface ASCAppDelegate : UIResponder <UIApplicationDelegate>
