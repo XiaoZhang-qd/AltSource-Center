@@ -58,8 +58,14 @@ jobs:
           built=0
 
           while IFS= read -r sdk; do
-            found=1
             version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
+            # Modern Apple clang on macOS 14 cannot link the legacy iPhoneOS 9.x–12.x
+            # SDKs shipped in theos/sdks. Only use SDKs that can produce device binaries.
+            if [ "$(printf '%s\n' "$version" "13.0" | sort -V | head -1)" != "13.0" ]; then
+              echo "Skipping legacy iPhoneOS$version.sdk (not linkable on this runner)"
+              continue
+            fi
+            found=1
             echo "=== Building iPhoneOS $version ==="
 
             bash ./build/local/build-ios.sh               --sdk "$version"               --target "$REQUESTED_TARGET"               --arch arm64
