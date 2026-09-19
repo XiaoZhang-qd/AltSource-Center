@@ -29,3 +29,17 @@ Object.assign(ASC_I18N["pt"],{copyCurrentURL:"Copiar URL atual",releasePage:"Git
 Object.assign(ASC_I18N["it"],{copyCurrentURL:"Copia URL corrente",releasePage:"GitHub Releases",softwarePage:"Pagina dell’app",ownership:"Proprietà del software"});
 Object.assign(ASC_I18N["ar"],{copyCurrentURL:"نسخ عنوان URL الحالي",releasePage:"إصدارات GitHub",softwarePage:"صفحة التطبيق",ownership:"ملكية البرنامج"});
 Object.assign(ASC_I18N["he"],{copyCurrentURL:"העתקת כתובת ה-URL הנוכחית",releasePage:"מהדורות GitHub",softwarePage:"דף האפליקציה",ownership:"פרטי בעלות התוכנה"});
+ASC_I18N["en"]=Object.assign({},ASC_I18N["en"]||ASC_I18N.en,{copyCurrentURL:"Copy Current URL",releasePage:"GitHub Releases",softwarePage:"Software Page",ownership:"Software Ownership"});
+ASC_I18N["zh-Hans"]=Object.assign({},ASC_I18N["zh-Hans"]||ASC_I18N.en,{copyCurrentURL:"复制当前 URL",releasePage:"GitHub Releases",softwarePage:"软件页面",ownership:"软件归属"});
+ASC_I18N["zh-Hant"]=Object.assign({},ASC_I18N["zh-Hant"]||ASC_I18N.en,{copyCurrentURL:"複製目前 URL",releasePage:"GitHub Releases",softwarePage:"軟體頁面",ownership:"軟體歸屬"});
+ASC_I18N["ja"]=Object.assign({},ASC_I18N["ja"]||ASC_I18N.en,{copyCurrentURL:"現在のURLをコピー",releasePage:"GitHub Releases",softwarePage:"アプリページ",ownership:"ソフトウェア所有情報"});
+ASC_I18N["ko"]=Object.assign({},ASC_I18N["ko"]||ASC_I18N.en,{copyCurrentURL:"현재 URL 복사",releasePage:"GitHub Releases",softwarePage:"앱 페이지",ownership:"소프트웨어 소유 정보"});
+ASC_I18N["vi"]=Object.assign({},ASC_I18N["vi"]||ASC_I18N.en,{copyCurrentURL:"Sao chép URL hiện tại",releasePage:"GitHub Releases",softwarePage:"Trang phần mềm",ownership:"Thông tin sở hữu phần mềm"});
+ASC_I18N["es"]=Object.assign({},ASC_I18N["es"]||ASC_I18N.en,{copyCurrentURL:"Copiar URL actual",releasePage:"GitHub Releases",softwarePage:"Página de la app",ownership:"Propiedad del software"});
+ASC_I18N["fr"]=Object.assign({},ASC_I18N["fr"]||ASC_I18N.en,{copyCurrentURL:"Copier l’URL actuelle",releasePage:"GitHub Releases",softwarePage:"Page de l’application",ownership:"Propriété du logiciel"});
+ASC_I18N["de"]=Object.assign({},ASC_I18N["de"]||ASC_I18N.en,{copyCurrentURL:"Aktuelle URL kopieren",releasePage:"GitHub Releases",softwarePage:"Softwareseite",ownership:"Software-Eigentum"});
+ASC_I18N["ru"]=Object.assign({},ASC_I18N["ru"]||ASC_I18N.en,{copyCurrentURL:"Копировать текущий URL",releasePage:"GitHub Releases",softwarePage:"Страница приложения",ownership:"Информация о владельце ПО"});
+ASC_I18N["pt"]=Object.assign({},ASC_I18N["pt"]||ASC_I18N.en,{copyCurrentURL:"Copiar URL atual",releasePage:"GitHub Releases",softwarePage:"Página do app",ownership:"Informações de propriedade"});
+ASC_I18N["it"]=Object.assign({},ASC_I18N["it"]||ASC_I18N.en,{copyCurrentURL:"Copia URL corrente",releasePage:"GitHub Releases",softwarePage:"Pagina dell’app",ownership:"Proprietà del software"});
+ASC_I18N["ar"]=Object.assign({},ASC_I18N["ar"]||ASC_I18N.en,{copyCurrentURL:"نسخ عنوان URL الحالي",releasePage:"إصدارات GitHub",softwarePage:"صفحة التطبيق",ownership:"ملكية البرنامج"});
+ASC_I18N["he"]=Object.assign({},ASC_I18N["he"]||ASC_I18N.en,{copyCurrentURL:"העתקת כתובת ה-URL הנוכחית",releasePage:"מהדורות GitHub",softwarePage:"דף האפליקציה",ownership:"פרטי בעלות התוכנה"});
