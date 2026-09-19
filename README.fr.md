@@ -6,6 +6,6 @@ Web : https://xiaozhang-qd.github.io/AltSource-Center/web/
 
 Releases : https://github.com/XiaoZhang-qd/AltSource-Center/releases
 
-Gestion des sources, recherche d’applications, détails, URL IPA, protocoles de sideloading, thèmes et interface multilingue.
+Gestion des sources, recherche d’applications, URL IPA, protocoles de sideloading, thèmes et interface multilingue.
 
 MIT License.
