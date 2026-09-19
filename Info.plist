@@ -5,6 +5,9 @@
 <key>CFBundleIdentifier</key><string>com.xiaozhang.altsourcecenter</string>
 <key>CFBundleName</key><string>AltSource Center</string>
 <key>CFBundlePackageType</key><string>APPL</string>
+<key>CFBundleExecutable</key><string>AltSourceCenter</string>
+<key>CFBundleSupportedPlatforms</key><array><string>iPhoneOS</string></array>
+<key>MinimumOSVersion</key><string>13.0</string>
 <key>CFBundleShortVersionString</key><string>2.0.0</string>
 <key>CFBundleVersion</key><string>2</string>
 <key>LSRequiresIPhoneOS</key><true/>
