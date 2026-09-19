@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-SDKROOT="\${THEOS_SDKS:-$HOME/theos/sdks}"
+SDKROOT="${THEOS_SDKS:-$HOME/theos/sdks}"
 OUT="$ROOT/build/out"; WORK="$ROOT/build/work"
 TARGET=13.0; ARCH=arm64; SDK=""; SIGN_ID="-"
 while [ "$#" -gt 0 ]; do
