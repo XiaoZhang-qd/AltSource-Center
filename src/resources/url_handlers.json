@@ -1,10 +1,16 @@
 {
+  "version": 2,
   "handlers": [
-    {"id":"altstore","name":"AltStore","source":"altstore-classic://source?url=%URL%","install":"","enabled":true},
-    {"id":"feather","name":"Feather","source":"feather://source/%URL%","install":"","enabled":true},
-    {"id":"livecontainer","name":"LiveContainer","source":"livecontainer://source?url=%URL%","install":"","enabled":true},
-    {"id":"sidestore","name":"SideStore","source":"sidestore://source?url=%URL%","install":"sidestore://install?url=%URL%","enabled":true},
-    {"id":"stikstore","name":"StikStore","source":"stikstore://add-source?url=%URL%","install":"","enabled":true},
-    {"id":"trollapps","name":"TrollApps","source":"trollapps://add?url=%URL%","install":"","enabled":true}
+    {"id":"altstore","name":"AltStore Classic","source":"altstore-classic://source?url={url}","install":"altstore://install?url={url}","enabled":true},
+    {"id":"sidestore","name":"SideStore","source":"sidestore://source?url={url}","install":"sidestore://install?url={url}","enabled":true},
+    {"id":"feather","name":"Feather","source":"feather://source/{urlPath}","install":"feather://install/{urlPath}","enabled":true},
+    {"id":"livecontainer","name":"LiveContainer","source":"livecontainer://sources?url={url}","install":"","enabled":true},
+    {"id":"stikstore","name":"StikStore","source":"stikstore://add-source?url={url}","install":"","enabled":true},
+    {"id":"trollapps","name":"TrollApps","source":"trollapps://add?url={url}","install":"","enabled":true},
+    {"id":"flarestore","name":"FlareStore","source":"flarestore://source?url={url}","install":"","enabled":true},
+    {"id":"esign","name":"ESign","source":"esign://addsource?url={url}","install":"esign://install?url={url}","enabled":true},
+    {"id":"ksign","name":"Ksign","source":"ksign://addsource?url={url}","install":"ksign://install?url={url}","enabled":true},
+    {"id":"gbox","name":"GBox","source":"gbox://AddSource/{urlPath}","install":"","enabled":true},
+    {"id":"kravasigner","name":"KravaSigner","source":"kravasigner://addRepo={url}","install":"","enabled":true}
   ]
 }
