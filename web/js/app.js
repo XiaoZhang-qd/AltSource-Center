@@ -18,6 +18,7 @@ const firstURL=(...xs)=>xs.find(x=>typeof x==="string"&&x.trim())||"";
 const linkButton=(label,u)=>u?`<a class="handler" href="${esc(u)}" target="_blank" rel="noopener">${ico("↗","handler-icon")}<span><b>${esc(label)}</b><small>${esc(u)}</small></span></a>`:"";
 const t=k=>(ASC_I18N[state.lang]||ASC_I18N.en)[k]||k;
 const ico=(name,cls="")=>`<span class="ico ${cls}" aria-hidden="true">${name}</span>`;
+const actionLabel=(icon,label)=>ico(icon)+'<span class="btn-label">'+esc(label)+'</span>';
 const iconFallback=g=>`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='16' fill='%23d9d9de'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='28' fill='%23666'%3E${encodeURIComponent(g||"✦")}%3C/text%3E%3C/svg%3E`;
 const sourceColor=s=>"#"+String(s.tintColor||"007afe").replaceAll("#","");
 const handlerURL=(h,u)=>h.source+(h.id==="feather"||h.id==="gbox"?u:encodeURIComponent(u));
