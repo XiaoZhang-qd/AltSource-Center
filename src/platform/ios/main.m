@@ -2,6 +2,7 @@
 #import <WebKit/WebKit.h>
 #import <Foundation/Foundation.h>
 #include "../../core/urlscheme.h"
+extern const char *asc_core_version(void);
 
 @interface ASCBridge : NSObject <WKScriptMessageHandler>
 @property(nonatomic,weak) WKWebView *webView;
