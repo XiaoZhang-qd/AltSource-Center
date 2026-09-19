@@ -87,7 +87,7 @@ The workflow:
 
 The Pages workflow is also manual-only. It publishes the `web/` directory when you explicitly run the workflow.
 
-Web interface: https://xiaozhang-qd.github.io/AltSource-Center/
+Web interface: https://xiaozhang-qd.github.io/AltSource-Center/web
 
 ## Upstream references
 
