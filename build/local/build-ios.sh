@@ -37,6 +37,7 @@ CC="$(command -v clang)"
 rm -rf "$OUT" "$WORK"
 mkdir -p "$OUT" "$WORK/Payload/AltSourceCenter.app"
 cp "$ROOT/Info.plist" "$WORK/Payload/AltSourceCenter.app/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 2" "$WORK/Payload/AltSourceCenter.app/Info.plist" || true
 cp -R "$ROOT/web" "$WORK/Payload/AltSourceCenter.app/web"
 
 CFLAGS=(-std=c11 -O2 -Wall -Wextra -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH")
@@ -45,6 +46,9 @@ CFLAGS=(-std=c11 -O2 -Wall -Wextra -isysroot "$SDKPATH" -miphoneos-version-min="
 "$CC" -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH" -fobjc-arc -c "$ROOT/src/platform/ios/main.m" -o "$WORK/main.o"
 "$CC" -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH" "$WORK/main.o" "$WORK/altsource.o" "$WORK/urlscheme.o" -framework UIKit -framework WebKit -framework Foundation -o "$WORK/Payload/AltSourceCenter.app/AltSourceCenter"
 
-codesign -f -s "$SIGN_ID" "$WORK/Payload/AltSourceCenter.app"
+codesign -f -s "$SIGN_ID" --timestamp=none "$WORK/Payload/AltSourceCenter.app"
+codesign --verify --deep --strict --verbose=2 "$WORK/Payload/AltSourceCenter.app"
+file "$WORK/Payload/AltSourceCenter.app/AltSourceCenter"
+/usr/libexec/PlistBuddy -c "Print :CFBundleExecutable" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 (cd "$WORK" && zip -qry "$OUT/AltSourceCenter-iOS-$SDK-$ARCH.ipa" Payload)
 echo "Built: $OUT/AltSourceCenter-iOS-$SDK-$ARCH.ipa"
