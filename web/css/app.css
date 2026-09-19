@@ -77,3 +77,12 @@ html[lang="ru"] .page-head>.uibutton,html[lang="de"] .page-head>.uibutton,html[l
 .home-actions .uibutton{width:100%!important;min-width:0!important;height:auto!important;min-height:42px!important;padding:5px 3px!important;font-size:11px!important;line-height:1.1!important;white-space:normal!important;word-break:break-word!important;overflow-wrap:anywhere!important}
 .page-head{min-width:0!important}.page-head>div{min-width:0!important;overflow:hidden}.page-head>.uibutton{min-width:72px!important;max-width:38%!important;height:auto!important;min-height:38px!important;padding:4px 3px!important;font-size:10px!important;line-height:1.05!important;white-space:normal!important;word-break:break-word!important;overflow-wrap:anywhere!important;text-align:center!important}
 @media(max-width:360px){.row-actions .text-button{font-size:9px!important}.client-actions .header-link{font-size:9px!important}.page-head>.uibutton{max-width:34%!important;font-size:9px!important}}
+
+
+/* Actual label wrapper: icons and translated text are separate flex items. */
+.row-actions .text-button,.client-actions .header-link,.app-actions .uibutton,.app-actions .link-button,.home-actions .uibutton{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;overflow:hidden!important}
+.row-actions .text-button,.client-actions .header-link{flex-direction:column!important;white-space:normal!important}
+.row-actions .text-button .btn-label,.client-actions .header-link .btn-label,.app-actions .uibutton .btn-label,.app-actions .link-button .btn-label,.home-actions .uibutton .btn-label{display:block!important;min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-align:center!important;line-height:1.05!important;overflow:hidden!important}
+.row-actions .text-button .ico,.client-actions .header-link .ico,.app-actions .uibutton .ico,.app-actions .link-button .ico{flex:0 0 auto!important}
+.row-actions .text-button .btn-label{font-size:10px!important}.client-actions .header-link .btn-label{font-size:10px!important}.app-actions .btn-label,.home-actions .btn-label{font-size:11px!important}
+@media(max-width:360px){.row-actions .text-button .btn-label,.client-actions .header-link .btn-label{font-size:9px!important}.app-actions .btn-label,.home-actions .btn-label{font-size:10px!important}}
