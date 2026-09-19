@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
 <title>AltSource Center</title>
 <link rel="stylesheet" href="css/app.css">
 </head>
@@ -18,13 +19,13 @@
 </header>
 <main class="content"><section id="app"></section></main>
 <nav class="tabbar" aria-label="Main navigation">
-  <button class="tab active" data-page="home"><span class="tab-icon">⌂</span><span data-i18n="home">Home</span></button>
-  <button class="tab" data-page="sources"><span class="tab-icon">◇</span><span data-i18n="sources">Sources</span></button>
-  <button class="tab" data-page="apps"><span class="tab-icon">▦</span><span data-i18n="apps">Apps</span></button>
-  <button class="tab" data-page="clients"><span class="tab-icon">⇧</span><span data-i18n="clients">Clients</span></button>
-  <button class="tab" data-page="settings"><span class="tab-icon">⚙</span><span data-i18n="settings">Settings</span></button>
+  <button type="button" class="tab active" data-page="home"><span class="tab-icon">⌂</span><span data-i18n="home">Home</span></button>
+  <button type="button" class="tab" data-page="sources"><span class="tab-icon">◇</span><span data-i18n="sources">Sources</span></button>
+  <button type="button" class="tab" data-page="apps"><span class="tab-icon">▦</span><span data-i18n="apps">Apps</span></button>
+  <button type="button" class="tab" data-page="clients"><span class="tab-icon">⇧</span><span data-i18n="clients">Clients</span></button>
+  <button type="button" class="tab" data-page="settings"><span class="tab-icon">⚙</span><span data-i18n="settings">Settings</span></button>
 </nav>
-<div id="modal" class="modal hidden"><div class="modal-card"><button id="modalClose" class="modal-close" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button type="button" id="modalClose" class="modal-close" aria-label="Close">×</button><div id="modalBody"></div></div></div>
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
