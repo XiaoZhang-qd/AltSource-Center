@@ -1,57 +1,97 @@
-name: Build iOS IPAs (manual)
-on:
+name: Build iOS IPAs
+
+"on":
   workflow_dispatch:
     inputs:
       version:
-        description: Release version
+        description: "Release version"
         required: true
         default: "2.0.0"
+        type: string
       deployment_target:
-        description: Minimum iOS version
+        description: "Minimum iOS version"
         required: true
         default: "13.0"
+        type: string
       release_notes:
-        description: Release notes
+        description: "Release notes"
         required: false
         default: ""
+        type: string
+
 permissions:
   contents: write
+
 jobs:
   build:
+    name: Build all iPhoneOS SDKs
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout AltSource Center
+        uses: actions/checkout@v4
+
       - name: Checkout Theos SDKs
         uses: actions/checkout@v4
         with:
           repository: theos/sdks
           path: theos-sdks
           fetch-depth: 1
-      - name: Build every device SDK
+
+      - name: Show SDKs
+        shell: bash
+        run: |
+          set -euxo pipefail
+          echo "THEOS_SDKS=$GITHUB_WORKSPACE/theos-sdks"
+          find "$GITHUB_WORKSPACE/theos-sdks" -maxdepth 1 -type d -name 'iPhoneOS*.sdk' -print | sort -V
+
+      - name: Build every iPhoneOS SDK
+        shell: bash
         env:
           THEOS_SDKS: ${{ github.workspace }}/theos-sdks
           REQUESTED_TARGET: ${{ inputs.deployment_target }}
-        shell: bash
         run: |
           set -euo pipefail
           rm -rf build/all
           mkdir -p build/all
+
           found=0
           built=0
-          shopt -s nullglob
-          for sdk in "$THEOS_SDKS"/iPhoneOS*.sdk; do
+
+          while IFS= read -r sdk; do
             found=1
             version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
-            bash ./build/local/build-ios.sh --sdk "$version" --target "$REQUESTED_TARGET" --arch arm64
+            echo "=== Building iPhoneOS $version ==="
+
+            bash ./build/local/build-ios.sh               --sdk "$version"               --target "$REQUESTED_TARGET"               --arch arm64
+
             ipa=(build/out/*.ipa)
-            test "${#ipa[@]}" -eq 1
-            cp "${ipa[0]}" "build/all/AltSourceCenter-iOS-$version-arm64.ipa"
-            built=$((built+1))
-          done
-          test "$found" -eq 1
-          test "$built" -gt 0
+            if [ "${#ipa[@]}" -ne 1 ]; then
+              echo "Expected exactly one IPA, found ${#ipa[@]}" >&2
+              exit 1
+            fi
+
+            cp "${ipa[0]}" "build/all/AltSourceCenter-iOS-${version}-arm64.ipa"
+            built=$((built + 1))
+          done < <(find "$THEOS_SDKS" -maxdepth 1 -type d -name 'iPhoneOS*.sdk' -print | sort -V)
+
+          if [ "$found" -eq 0 ]; then
+            echo "No iPhoneOS SDKs found in $THEOS_SDKS" >&2
+            exit 1
+          fi
+
+          if [ "$built" -eq 0 ]; then
+            echo "No IPA was built." >&2
+            exit 1
+          fi
+
+          ls -lh build/all
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_NOTES: ${{ inputs.release_notes }}
+        shell: bash
         run: |
-          gh release create "v${{ inputs.version }}" build/all/*.ipa --title "AltSource Center v${{ inputs.version }}" --notes "${{ inputs.release_notes }}"
+          set -euo pipefail
+          gh release create "v$RELEASE_VERSION"             build/all/*.ipa             --title "AltSource Center v$RELEASE_VERSION"             --notes "$RELEASE_NOTES"
