@@ -11,3 +11,5 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none
 .modal{align-items:flex-start!important;padding-top:max(10vh,env(safe-area-inset-top) + 34px)!important;padding-bottom:calc(92px + env(safe-area-inset-bottom))!important;box-sizing:border-box;overflow-y:auto}
 .modal-card{margin-top:0!important;max-height:calc(100vh - 130px)!important;overflow-y:auto}
 .notice-dialog{padding-top:.25rem}
+
+.ownership-card{border-radius:16px;background:var(--color-secondary-system-background);padding:4px 14px}.ownership-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--color-separator);font-size:.95rem}.ownership-row:last-of-type{border-bottom:0}.ownership-label{opacity:.55;flex:none}.ownership-row strong{font-weight:600;text-align:right}.ownership-row a{color:var(--color-primary);text-align:right;word-break:break-all;text-decoration:none}
