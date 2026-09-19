@@ -87,7 +87,7 @@ The workflow:
 
 Pages ワークフローも手動のみです。明示的に実行すると `web/` ディレクトリを公開します。
 
-Web インターフェース：https://xiaozhang-qd.github.io/AltSource-Center/
+Web インターフェース：https://xiaozhang-qd.github.io/AltSource-Center/web
 
 ## 上流プロジェクト
 
