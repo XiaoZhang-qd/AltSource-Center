@@ -5,6 +5,7 @@ SDKROOT="${THEOS_SDKS:-$HOME/theos/sdks}"
 OUT="$ROOT/build/out"
 WORK="$ROOT/build/work"
 TARGET=13.0
+VERSION=2.0.0
 ARCH=arm64
 SDK=""
 SIGN_ID="-"
@@ -16,10 +17,11 @@ while [ "$#" -gt 0 ]; do
       exit 0 ;;
     --sdk) SDK="$2"; shift 2 ;;
     --target) TARGET="$2"; shift 2 ;;
+    --version) VERSION="$2"; shift 2 ;;
     --arch) ARCH="$2"; shift 2 ;;
     --sign) SIGN_ID="$2"; shift 2 ;;
     -h|--help)
-      echo "Usage: $0 [--list-sdks] [--sdk VERSION] [--target VERSION] [--arch ARCH] [--sign ID]"
+      echo "Usage: $0 [--list-sdks] [--sdk VERSION] [--target VERSION] [--arch ARCH] [--version VERSION] [--sign ID]"
       exit 0 ;;
     *) echo "Unknown option: $1" >&2; exit 2 ;;
   esac
@@ -30,6 +32,10 @@ if [ -z "$SDK" ]; then
   SDK="$(find "$SDKROOT" -maxdepth 1 -type d -name 'iPhoneOS*.sdk' -print | sed 's#.*/##;s#\.sdk$##' | sort -V | tail -1 | sed 's/^iPhoneOS//')"
 fi
 [ -n "$SDK" ] || { echo "No iPhoneOS SDK found." >&2; exit 1; }
+case "$VERSION" in
+  *.*.*) ;;
+  *) echo "Invalid app version: $VERSION (expected x.y.z)" >&2; exit 2 ;;
+esac
 SDKPATH="$SDKROOT/iPhoneOS$SDK.sdk"
 [ -d "$SDKPATH" ] || { echo "SDK not found: $SDKPATH" >&2; exit 1; }
 
@@ -37,7 +43,8 @@ CC="$(command -v clang)"
 rm -rf "$OUT" "$WORK"
 mkdir -p "$OUT" "$WORK/Payload/AltSourceCenter.app"
 cp "$ROOT/Info.plist" "$WORK/Payload/AltSourceCenter.app/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 2" "$WORK/Payload/AltSourceCenter.app/Info.plist" || true
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 cp -R "$ROOT/web" "$WORK/Payload/AltSourceCenter.app/web"
 
 CFLAGS=(-std=c11 -O2 -Wall -Wextra -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH")
