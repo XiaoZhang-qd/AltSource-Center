@@ -39,7 +39,7 @@ extern const char *asc_core_version(void);
 @implementation ASCViewController
 - (void)loadView {
     WKWebViewConfiguration *config=[WKWebViewConfiguration new];
-    self.webView=[[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    self.webView=[[WKWebView alloc] initWithFrame:CGRectMake(0,0,1,1) configuration:config];
     self.bridge=[ASCBridge new]; self.bridge.webView=self.webView;
     [config.userContentController addScriptMessageHandler:self.bridge name:@"fetchJSON"];
     self.view=self.webView;
