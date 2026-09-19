@@ -49,6 +49,7 @@ jobs:
         env:
           THEOS_SDKS: ${{ github.workspace }}/theos-sdks
           REQUESTED_TARGET: ${{ inputs.deployment_target }}
+          RELEASE_VERSION: ${{ inputs.version }}
         run: |
           set -euo pipefail
           rm -rf build/all
@@ -68,7 +69,11 @@ jobs:
             found=1
             echo "=== Building iPhoneOS $version ==="
 
-            bash ./build/local/build-ios.sh               --sdk "$version"               --target "$REQUESTED_TARGET"               --arch arm64
+            bash ./build/local/build-ios.sh \
+              --sdk "$version" \
+              --target "$REQUESTED_TARGET" \
+              --version "$RELEASE_VERSION" \
+              --arch arm64
 
             ipa=(build/out/*.ipa)
             if [ "${#ipa[@]}" -ne 1 ]; then
