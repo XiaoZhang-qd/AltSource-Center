@@ -1,6 +1,8 @@
 name: Build iOS IPAs
 
 on:
+  push:
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       version:
@@ -21,6 +23,7 @@ permissions:
 
 jobs:
   build:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: macos-14
     steps:
       - name: Checkout project
