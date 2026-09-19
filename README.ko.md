@@ -87,7 +87,7 @@ The workflow:
 
 Pages 워크플로도 수동 실행만 지원합니다. 명시적으로 실행하면 `web/` 디렉터리를 게시합니다.
 
-Web 인터페이스: https://xiaozhang-qd.github.io/AltSource-Center/
+Web 인터페이스: https://xiaozhang-qd.github.io/AltSource-Center/web
 
 ## 업스트림 참고
 
