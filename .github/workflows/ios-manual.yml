@@ -100,4 +100,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh release create "v$RELEASE_VERSION"             build/all/*.ipa             --title "AltSource Center v$RELEASE_VERSION"             --notes "$RELEASE_NOTES"
+          tag="v$RELEASE_VERSION"
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists; uploading/replacing IPA assets."
+            gh release upload "$tag" build/all/*.ipa --clobber
+            if [ -n "$RELEASE_NOTES" ]; then
+              gh release edit "$tag" --notes "$RELEASE_NOTES"
+            fi
+          else
+            gh release create "$tag" \
+              build/all/*.ipa \
+              --title "AltSource Center $tag" \
+              --notes "$RELEASE_NOTES"
+          fi
