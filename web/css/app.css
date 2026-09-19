@@ -42,3 +42,15 @@ html,body{background:var(--color-bg)!important;color:var(--text-color,#111)!impo
 .row-actions{min-width:0;flex-wrap:nowrap;overflow:hidden}.row-actions>*{min-width:0;flex:0 1 auto;max-width:100%}
 .client-actions .header-link{font-size:clamp(10px,2.8vw,12px);padding-left:3px!important;padding-right:3px!important}
 .tab{font-size:clamp(8px,2.5vw,10px)}
+
+
+/* Hard width containment for translated action labels */
+.row-actions{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px!important;width:100%;overflow:hidden}
+.row-actions .text-button{display:flex!important;width:100%!important;min-width:0!important;max-width:100%!important;flex:0 0 auto!important;align-items:center;justify-content:center;gap:2px;padding:5px 2px!important;font-size:clamp(8px,2.5vw,12px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.row-actions .text-button .ico{flex:0 0 auto!important}
+.page-head>.uibutton{min-width:0!important;max-width:42%!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.home-actions>.uibutton,.app-actions>.uibutton,.app-actions>.link-button{min-width:0!important;width:0!important;max-width:none!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.client-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important;width:100%!important;overflow:hidden!important}
+.client-actions .header-link{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;font-size:clamp(8px,2.7vw,12px)!important;padding:0 2px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.client-actions .header-link .ico{margin-right:1px}
+@media(max-width:360px){.row-actions .text-button{font-size:8px!important}.client-actions .header-link{font-size:8px!important}.page-head>.uibutton{max-width:38%!important}}
