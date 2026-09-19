@@ -10,7 +10,8 @@ extern const char *asc_core_version(void);
 
 @implementation ASCBridge
 - (void)userContentController:(WKUserContentController *)controller didReceiveScriptMessage:(WKScriptMessage *)message {
-    if ([message.name isEqualToString:@"openURL"]) { NSString *value=[message.body isKindOfClass:[NSString class]]?message.body:nil; NSURL *u=value.length?[NSURL URLWithString:value]:nil; if(u) dispatch_async(dispatch_get_main_queue(),^{ [[UIApplication sharedApplication] openURL:u options:@{} completionHandler:nil]; }); return; }\n    if (![message.name isEqualToString:@"fetchJSON"]) return;
+    if ([message.name isEqualToString:@"openURL"]) { NSString *value=[message.body isKindOfClass:[NSString class]]?message.body:nil; NSURL *u=value.length?[NSURL URLWithString:value]:nil; if(u) dispatch_async(dispatch_get_main_queue(),^{ [[UIApplication sharedApplication] openURL:u options:@{} completionHandler:nil]; }); return; }
+    if (![message.name isEqualToString:@"fetchJSON"]) return;
     NSString *urlString=[message.body isKindOfClass:[NSString class]]?message.body:nil;
     NSURL *url=urlString.length?[NSURL URLWithString:urlString]:nil;
     if (!url || ![url.scheme.lowercaseString isEqualToString:@"https"]) return;
@@ -41,7 +42,10 @@ extern const char *asc_core_version(void);
     WKWebViewConfiguration *config=[WKWebViewConfiguration new];
     self.webView=[[WKWebView alloc] initWithFrame:CGRectMake(0,0,1,1) configuration:config];
     self.bridge=[ASCBridge new]; self.bridge.webView=self.webView;
-    [config.userContentController addScriptMessageHandler:self.bridge name:@"fetchJSON"];\n    [config.userContentController addScriptMessageHandler:self.bridge name:@"openURL"];\n    self.webView.scrollView.pinchGestureRecognizer.enabled=NO;\n    self.webView.scrollView.panGestureRecognizer.maximumNumberOfTouches=2;
+    [config.userContentController addScriptMessageHandler:self.bridge name:@"fetchJSON"];
+    [config.userContentController addScriptMessageHandler:self.bridge name:@"openURL"];
+    self.webView.scrollView.pinchGestureRecognizer.enabled=NO;
+    self.webView.scrollView.panGestureRecognizer.maximumNumberOfTouches=2;
     self.view=self.webView;
 }
 - (void)viewDidLoad {
