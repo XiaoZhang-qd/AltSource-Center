@@ -87,7 +87,7 @@ The workflow:
 
 Pages 工作流程同樣只支援手動執行。手動執行後會發佈 `web/` 目錄。
 
-Web 頁面：https://xiaozhang-qd.github.io/AltSource-Center/web/
+Web 頁面：https://xiaozhang-qd.github.io/AltSource-Center/
 
 ## 上游参考
 
