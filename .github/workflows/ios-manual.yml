@@ -29,8 +29,8 @@ jobs:
           fetch-depth: 1
       - name: Build every device SDK
         env:
-          THEOS_SDKS: \${{ github.workspace }}/theos-sdks
-          REQUESTED_TARGET: \${{ inputs.deployment_target }}
+          THEOS_SDKS: ${{ github.workspace }}/theos-sdks
+          REQUESTED_TARGET: ${{ inputs.deployment_target }}
         shell: bash
         run: |
           set -euo pipefail
@@ -44,14 +44,14 @@ jobs:
             version="$(basename "$sdk" .sdk | sed 's/^iPhoneOS//')"
             bash ./build/local/build-ios.sh --sdk "$version" --target "$REQUESTED_TARGET" --arch arm64
             ipa=(build/out/*.ipa)
-            test "\${#ipa[@]}" -eq 1
-            cp "\${ipa[0]}" "build/all/AltSourceCenter-iOS-$version-arm64.ipa"
+            test "${#ipa[@]}" -eq 1
+            cp "${ipa[0]}" "build/all/AltSourceCenter-iOS-$version-arm64.ipa"
             built=$((built+1))
           done
           test "$found" -eq 1
           test "$built" -gt 0
       - name: Publish GitHub Release
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v\${{ inputs.version }}" build/all/*.ipa --title "AltSource Center v\${{ inputs.version }}" --notes "\${{ inputs.release_notes }}"
+          gh release create "v${{ inputs.version }}" build/all/*.ipa --title "AltSource Center v${{ inputs.version }}" --notes "${{ inputs.release_notes }}"
