@@ -12,7 +12,7 @@ const url=x=>/^https?:\/\//i.test(x)?x:"https://"+x;
 const save=()=>localStorage.setItem("ASC.sources",JSON.stringify(S.sources));
 const saveHandlers=()=>localStorage.setItem("ASC.handlers",JSON.stringify(H));
 const saveProfile=()=>localStorage.setItem("ASC.profile",JSON.stringify(PROFILE));
-const applyTheme=()=>{document.documentElement.dataset.theme=state.theme;document.documentElement.style.colorScheme=state.theme==="system"?"light dark":state.theme};window.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener?.("change",()=>{if(state.theme==="system")applyTheme()});
+const applyTheme=()=>{document.documentElement.dataset.theme=state.theme;document.documentElement.style.colorScheme=state.theme==="system"?"light dark":state.theme;const dark=state.theme==="dark"||(state.theme==="system"&&window.matchMedia?.("(prefers-color-scheme: dark)")?.matches);const bar=document.querySelector(".tabbar");if(bar){bar.style.background=dark?"rgba(28,28,30,.92)":"rgba(255,255,255,.92)";bar.style.color=dark?"#fff":"#111";bar.style.setProperty("color-scheme",dark?"dark":"light")}document.querySelectorAll(".tab").forEach(x=>{x.style.color=dark?"#fff":""})};window.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener?.("change",()=>{if(state.theme==="system")applyTheme()});
 const setTheme=v=>{state.theme=v;localStorage.setItem("ASC.theme",v);applyTheme()};
 applyTheme();
 const sourceVisible=s=>s.hidden!==true;
