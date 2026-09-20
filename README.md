@@ -1,6 +1,6 @@
 <div align="center">
 
-![AltSource Center](web/assets/logo.svg)
+![AltSource Center](https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg)
 
 </div>
 
