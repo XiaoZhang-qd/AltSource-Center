@@ -117,3 +117,5 @@ body[data-theme="dark"] .tab.active{background:rgba(10,132,255,.14)!important}
 :root[data-theme="system"] .tab.active,html[data-theme="system"] .tab.active,body[data-theme="system"] .tab.active{background:rgba(10,132,255,.14)!important}
 }
 .client-logo{width:48px;height:48px;flex:0 0 48px;object-fit:contain;border-radius:12px}.client-main{display:flex;align-items:center;gap:12px;min-width:0}.client-main>div{min-width:0}
+
+.handler-logo{width:36px;height:36px;flex:0 0 36px;border-radius:10px;object-fit:contain;background:rgba(0,122,254,.1)}
