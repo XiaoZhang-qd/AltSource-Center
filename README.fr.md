@@ -1,3 +1,9 @@
+<div align="center">
+
+![AltSource Center](web/assets/logo.svg)
+
+</div>
+
 # AltSource Center
 
 Navigateur AltSource local-first basé sur C11.
