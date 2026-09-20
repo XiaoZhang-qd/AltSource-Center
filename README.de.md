@@ -1,3 +1,9 @@
+<div align="center">
+
+![AltSource Center](web/assets/logo.svg)
+
+</div>
+
 # AltSource Center
 
 Ein C11-basierter, local-first AltSource-Browser.
