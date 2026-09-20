@@ -37,6 +37,10 @@ jobs:
           path: theos-sdks
           fetch-depth: 1
 
+      - name: Install ImageMagick
+        shell: bash
+        run: brew install imagemagick
+
       - name: Show SDKs
         shell: bash
         run: |
