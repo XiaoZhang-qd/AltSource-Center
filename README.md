@@ -54,6 +54,45 @@ Install URL actions are exposed only where a documented implementation supports 
 
 The editable registry is at `src/resources/url_handlers.json`. The web UI mirrors the same list in `web/js/app.js`.
 
+## Direct import and IPA links
+
+The project mirror source is:
+
+`https://xiaozhang-qd.github.io/AltSource-Center/source.json`
+
+The project web interface is:
+
+https://xiaozhang-qd.github.io/AltSource-Center/web
+
+### Mirror source import protocols
+
+Use the following links on an iPhone/iPad with the corresponding client installed. The URL opens that client and passes the project's mirror source URL to it.
+
+- AltStore Classic — `altstore-classic://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- SideStore — `sidestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- Feather — `feather://source/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- LiveContainer — `livecontainer://sources?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- StikStore — `stikstore://add-source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- TrollApps — `trollapps://add?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- FlareStore — `flarestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- ESign — `esign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- Ksign — `ksign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- GBox — `gbox://AddSource/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+- KravaSigner — `kravasigner://addRepo=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
+
+### IPA install URL protocols
+
+The latest IPA is published in the GitHub Release. The exact IPA URL changes with each release, so release notes are updated automatically after a successful build. The following protocol forms can be used with the current IPA URL:
+
+- AltStore — `altstore://install?url=<IPA_URL>`
+- SideStore — `sidestore://install?url=<IPA_URL>`
+- Feather — `feather://install/<IPA_URL>`
+- LiveContainer — `livecontainer://install?url=<IPA_URL>`
+- ESign — `esign://install?url=<IPA_URL>`
+- Ksign — `ksign://install?url=<IPA_URL>`
+
+> URL schemes depend on the installed client version. A client may change or remove a scheme. AltSource Center launches the client's URL scheme; it does not perform signing itself.
+
 ## Release Notes
 
 After each successful iOS build Action, the release notes are updated with the available source URL schemes and IPA URL schemes.
