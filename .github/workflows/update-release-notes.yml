@@ -13,16 +13,40 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Update release notes
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update source and release notes
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          TAG="v2.0.0"
           REPO="${{ github.repository }}"
+          TAG="$(gh release list --repo "$REPO" --limit 1 --json tagName --jq '.[0].tagName')"
+          VERSION="${TAG#v}"
           ASSETS="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].url' 2>/dev/null || true)"
           SOURCE_URL="https://xiaozhang-qd.github.io/AltSource-Center/source.json"
           IPA="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[0].browser_download_url' 2>/dev/null || true)"
+          IPA_SIZE="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[0].size')"
+          IPA_DATE="$(gh release view "$TAG" --repo "$REPO" --json publishedAt --jq '.publishedAt')"
+          jq --arg version "$VERSION" --arg date "$IPA_DATE" --arg url "$IPA" --argjson size "$IPA_SIZE" '
+            .apps[0].versions = ([{
+              version:$version,
+              buildVersion:"2",
+              date:$date,
+              localizedDescription:("AltSource Center " + $version + "."),
+              downloadURL:$url,
+              size:$size,
+              minOSVersion:"13.0"
+            }] + .apps[0].versions)
+            | .apps[0].versions |= unique_by(.version)
+          ' web/source.json > web/source.json.tmp
+          mv web/source.json.tmp web/source.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/source.json
+          git diff --cached --quiet || git commit -m "Update AltSource source for $TAG"
+          git push
           {
             echo "## AltSource Center $TAG"
             echo
