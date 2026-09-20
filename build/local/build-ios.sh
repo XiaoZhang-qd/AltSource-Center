@@ -46,6 +46,11 @@ cp "$ROOT/Info.plist" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 cp -R "$ROOT/web" "$WORK/Payload/AltSourceCenter.app/web"
+# Bundle real iOS AppIcon PNGs so the generated IPA has a Home Screen icon.
+for icon in "$ROOT"/build/appicon/*.png; do
+  [ -f "$icon" ] || continue
+  cp "$icon" "$WORK/Payload/AltSourceCenter.app/$(basename "$icon")"
+done
 
 CFLAGS=(-std=c11 -O2 -Wall -Wextra -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH")
 "$CC" "${CFLAGS[@]}" -c "$ROOT/src/core/altsource.c" -o "$WORK/altsource.o"
@@ -53,6 +58,10 @@ CFLAGS=(-std=c11 -O2 -Wall -Wextra -isysroot "$SDKPATH" -miphoneos-version-min="
 "$CC" -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH" -fobjc-arc -c "$ROOT/src/platform/ios/main.m" -o "$WORK/main.o"
 "$CC" -isysroot "$SDKPATH" -miphoneos-version-min="$TARGET" -arch "$ARCH" "$WORK/main.o" "$WORK/altsource.o" "$WORK/urlscheme.o" -framework UIKit -framework WebKit -framework Foundation -o "$WORK/Payload/AltSourceCenter.app/AltSourceCenter"
 
+if [ ! -f "$WORK/Payload/AltSourceCenter.app/AppIcon60x60.png" ]; then
+  echo "App icon assets are missing." >&2
+  exit 1
+fi
 codesign -f -s "$SIGN_ID" --timestamp=none "$WORK/Payload/AltSourceCenter.app"
 codesign --verify --deep --strict --verbose=2 "$WORK/Payload/AltSourceCenter.app"
 file "$WORK/Payload/AltSourceCenter.app/AltSourceCenter"
