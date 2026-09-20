@@ -21,34 +21,40 @@ jobs:
           TAG="v2.0.0"
           REPO="${{ github.repository }}"
           ASSETS="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].url' 2>/dev/null || true)"
+          SOURCE_URL="https://xiaozhang-qd.github.io/AltSource-Center/source.json"
+          IPA="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[0].browser_download_url' 2>/dev/null || true)"
           {
-            echo "## iOS build"
+            echo "## AltSource Center $TAG"
             echo
-            echo "### IPA assets"
-            if [ -n "$ASSETS" ]; then
-              echo "$ASSETS" | while IFS= read -r url; do echo "- $url"; done
+            echo "### Add this source"
+            echo "- altstore://source?url=$SOURCE_URL"
+            echo
+            echo "### Add source"
+            echo "- AltStore Classic: altstore-classic://source?url=$SOURCE_URL"
+            echo "- SideStore: sidestore://source?url=$SOURCE_URL"
+            echo "- Feather: feather://source/$SOURCE_URL"
+            echo "- LiveContainer: livecontainer://sources?url=$SOURCE_URL"
+            echo "- StikStore: stikstore://add-source?url=$SOURCE_URL"
+            echo "- TrollApps: trollapps://add?url=$SOURCE_URL"
+            echo "- FlareStore: flarestore://source?url=$SOURCE_URL"
+            echo "- ESign: esign://addsource?url=$SOURCE_URL"
+            echo "- Ksign: ksign://addsource?url=$SOURCE_URL"
+            echo "- GBox: gbox://AddSource/$SOURCE_URL"
+            echo "- KravaSigner: kravasigner://addRepo=$SOURCE_URL"
+            echo
+            echo "### Install this release"
+            if [ -n "$IPA" ]; then
+              echo "- Direct IPA: $IPA"
+              echo "- AltStore: altstore://install?url=$IPA"
+              echo "- SideStore: sidestore://install?url=$IPA"
+              echo "- Feather: feather://install/$IPA"
+              echo "- ESign: esign://install?url=$IPA"
+              echo "- Ksign: ksign://install?url=$IPA"
             else
               echo "- No IPA asset URL was returned by GitHub."
             fi
             echo
-            echo "### Source URL protocols"
-            echo "- altstore-classic://source?url="
-            echo "- sidestore://source?url="
-            echo "- feather://source/"
-            echo "- livecontainer://sources?url="
-            echo "- stikstore://add-source?url="
-            echo "- trollapps://add?url="
-            echo "- flarestore://source?url="
-            echo "- esign://addsource?url="
-            echo "- ksign://addsource?url="
-            echo "- gbox://AddSource/"
-            echo "- kravasigner://addRepo="
-            echo
-            echo "### IPA URL protocols"
-            echo "- altstore://install?url="
-            echo "- sidestore://install?url="
-            echo "- feather://install/"
-            echo "- esign://install?url="
-            echo "- ksign://install?url="
+            echo "### IPA assets"
+            if [ -n "$ASSETS" ]; then echo "$ASSETS" | while IFS= read -r url; do echo "- $url"; done; fi
           } > release-notes.md
           gh release edit "$TAG" --repo "$REPO" --notes-file release-notes.md
