@@ -70,6 +70,7 @@ jobs:
               echo "[Install with AltStore](altstore://install?url=$IPA)"
               echo "[Install with SideStore](sidestore://install?url=$IPA)"
               echo "[Install with Feather](feather://install/$IPA)"
+              echo "[Install with LiveContainer](livecontainer://install?url=$IPA)"
               echo "[Install with ESign](esign://install?url=$IPA)"
               echo "[Install with Ksign](ksign://install?url=$IPA)"
               echo
