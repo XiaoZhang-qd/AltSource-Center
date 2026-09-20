@@ -1,0 +1,52 @@
+{
+  "name": "AltSource Center",
+  "subtitle": "AltSource catalog and source browser for iOS",
+  "description": "AltSource Center provides a native iOS interface for browsing AltStore-compatible sources, apps, clients, IPA links, and source management tools.",
+  "website": "https://xiaozhang-qd.github.io/AltSource-Center/web",
+  "tintColor": "#007AFF",
+  "apps": [
+    {
+      "name": "AltSource Center",
+      "bundleIdentifier": "com.xiaozhang.altsourcecenter",
+      "developerName": "XiaoZhang-qd",
+      "subtitle": "Browse and manage AltStore-compatible sources",
+      "localizedDescription": "An iOS AltSource catalog and browser with source management, app details, client URL schemes, IPA URL copying, multilingual UI, and light/dark/system themes.",
+      "tintColor": "#007AFF",
+      "category": "utilities",
+      "versions": [
+        {
+          "version": "2.0.3",
+          "buildVersion": "2",
+          "date": "2026-09-20T00:51:42Z",
+          "localizedDescription": "AltSource Center 2.0.3.",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 43215,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.1",
+          "buildVersion": "2",
+          "date": "2026-09-19T14:48:39Z",
+          "localizedDescription": "AltSource Center 2.0.1.",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.1/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 35812,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.0",
+          "buildVersion": "2",
+          "date": "2026-09-19T02:07:44Z",
+          "localizedDescription": "AltSource Center 2.0.0.",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.0/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 43214,
+          "minOSVersion": "13.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    }
+  ],
+  "news": []
+}
