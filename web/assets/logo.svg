@@ -1,1 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0A84FF"/><stop offset="1" stop-color="#5E5CE6"/></linearGradient></defs><rect width="128" height="128" rx="30" fill="url(#g)"/><path d="M28 49c0-8 6-14 14-14h44c8 0 14 6 14 14v38c0 8-6 14-14 14H42c-8 0-14-6-14-14z" fill="#fff" opacity=".96"/><path d="M38 49h44l-5 42H43z" fill="none" stroke="#0A84FF" stroke-width="6"/><path d="M48 49c0-12 7-21 16-21s16 9 16 21" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/><path d="M48 65h32M48 77h22" stroke="#5E5CE6" stroke-width="5" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+<defs>
+  <linearGradient id="bg" x1="14" y1="8" x2="114" y2="120" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0A84FF"/>
+    <stop offset=".52" stop-color="#5856D6"/>
+    <stop offset="1" stop-color="#AF52DE"/>
+  </linearGradient>
+  <linearGradient id="card" x1="38" y1="34" x2="91" y2="96" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#FFFFFF"/>
+    <stop offset="1" stop-color="#F2F2F7"/>
+  </linearGradient>
+  <filter id="shadow" x="15" y="15" width="98" height="98" filterUnits="userSpaceOnUse">
+    <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity=".22"/>
+  </filter>
+</defs>
+<rect x="4" y="4" width="120" height="120" rx="30" fill="url(#bg)"/>
+<circle cx="30" cy="31" r="13" fill="#FFFFFF" opacity=".12"/>
+<circle cx="100" cy="96" r="18" fill="#FFFFFF" opacity=".08"/>
+<g filter="url(#shadow)">
+  <rect x="30" y="29" width="68" height="70" rx="18" fill="url(#card)"/>
+</g>
+<path d="M46 52h36M46 65h26M46 78h17" stroke="#5856D6" stroke-width="7" stroke-linecap="round"/>
+<path d="M82 76l10 10-10 10" fill="none" stroke="#0A84FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="88" cy="43" r="7" fill="#0A84FF"/>
+<circle cx="96" cy="35" r="4" fill="#AF52DE"/>
+<path d="M88 43l8-8" stroke="#0A84FF" stroke-width="4" stroke-linecap="round"/>
+</svg>
