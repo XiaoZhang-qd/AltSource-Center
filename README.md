@@ -56,42 +56,34 @@ The editable registry is at `src/resources/url_handlers.json`. The web UI mirror
 
 ## Direct import and IPA links
 
-The project mirror source is:
+Mirror source: https://xiaozhang-qd.github.io/AltSource-Center/source.json
 
-`https://xiaozhang-qd.github.io/AltSource-Center/source.json`
+### Mirror source import links
 
-The project web interface is:
+- [AltStore Classic](altstore-classic://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [SideStore](sidestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [Feather](feather://source/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [LiveContainer](livecontainer://sources?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [StikStore](stikstore://add-source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [TrollApps](trollapps://add?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [FlareStore](flarestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [ESign](esign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [Ksign](ksign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [GBox](gbox://AddSource/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [KravaSigner](kravasigner://addRepo=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
 
-https://xiaozhang-qd.github.io/AltSource-Center/web
+### IPA install links
 
-### Mirror source import protocols
+Current IPA: https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-13.7-arm64.ipa
 
-Use the following links on an iPhone/iPad with the corresponding client installed. The URL opens that client and passes the project's mirror source URL to it.
+- [AltStore](altstore://install?url=https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
+- [SideStore](sidestore://install?url=https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
+- [Feather](feather://install/https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
+- [LiveContainer](livecontainer://install?url=https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
+- [ESign](esign://install?url=https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
+- [Ksign](ksign://install?url=https%3A%2F%2Fgithub.com%2FXiaoZhang-qd%2FAltSource-Center%2Freleases%2Fdownload%2Fv2.0.3%2FAltSourceCenter-iOS-13.7-arm64.ipa)
 
-- AltStore Classic — `altstore-classic://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- SideStore — `sidestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- Feather — `feather://source/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- LiveContainer — `livecontainer://sources?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- StikStore — `stikstore://add-source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- TrollApps — `trollapps://add?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- FlareStore — `flarestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- ESign — `esign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- Ksign — `ksign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- GBox — `gbox://AddSource/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-- KravaSigner — `kravasigner://addRepo=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json`
-
-### IPA install URL protocols
-
-The latest IPA is published in the GitHub Release. The exact IPA URL changes with each release, so release notes are updated automatically after a successful build. The following protocol forms can be used with the current IPA URL:
-
-- AltStore — `altstore://install?url=<IPA_URL>`
-- SideStore — `sidestore://install?url=<IPA_URL>`
-- Feather — `feather://install/<IPA_URL>`
-- LiveContainer — `livecontainer://install?url=<IPA_URL>`
-- ESign — `esign://install?url=<IPA_URL>`
-- Ksign — `ksign://install?url=<IPA_URL>`
-
-> URL schemes depend on the installed client version. A client may change or remove a scheme. AltSource Center launches the client's URL scheme; it does not perform signing itself.
+> These links require the corresponding client to be installed. URL schemes can change between client versions.
 
 ## Release Notes
 
