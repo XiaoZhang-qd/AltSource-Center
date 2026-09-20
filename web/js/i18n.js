@@ -59,3 +59,18 @@ Object.assign(ASC_I18N["pt"],{"copyCurrentURL":"Copiar URL atual","releasePage":
 Object.assign(ASC_I18N["it"],{"copyCurrentURL":"Copia URL corrente","releasePage":"GitHub Releases","softwarePage":"Pagina dell’app","ownership":"Proprietà del software"});
 Object.assign(ASC_I18N["ar"],{"copyCurrentURL":"نسخ عنوان URL الحالي","releasePage":"إصدارات GitHub","softwarePage":"صفحة التطبيق","ownership":"ملكية البرنامج"});
 Object.assign(ASC_I18N["he"],{"copyCurrentURL":"העתקת כתובת ה-URL הנוכחית","releasePage":"מהדורות GitHub","softwarePage":"דף האפליקציה","ownership":"פרטי בעלות התוכנה"});
+
+Object.assign(ASC_I18N["en"],{sourceVisibility:"Mirror Source Settings"});
+Object.assign(ASC_I18N["zh-Hans"],{sourceVisibility:"镜像源设置"});
+Object.assign(ASC_I18N["zh-Hant"],{sourceVisibility:"鏡像源設定"});
+Object.assign(ASC_I18N["ja"],{sourceVisibility:"ミラーソース設定"});
+Object.assign(ASC_I18N["ko"],{sourceVisibility:"미러 소스 설정"});
+Object.assign(ASC_I18N["vi"],{sourceVisibility:"Cài đặt nguồn mirror"});
+Object.assign(ASC_I18N["es"],{sourceVisibility:"Configuración de fuentes espejo"});
+Object.assign(ASC_I18N["fr"],{sourceVisibility:"Paramètres des sources miroir"});
+Object.assign(ASC_I18N["de"],{sourceVisibility:"Mirror-Quelleneinstellungen"});
+Object.assign(ASC_I18N["ru"],{sourceVisibility:"Настройки зеркальных источников"});
+Object.assign(ASC_I18N["pt"],{sourceVisibility:"Configurações de fontes espelho"});
+Object.assign(ASC_I18N["it"],{sourceVisibility:"Impostazioni delle fonti mirror"});
+Object.assign(ASC_I18N["ar"],{sourceVisibility:"إعدادات المصادر المرآة"});
+Object.assign(ASC_I18N["he"],{sourceVisibility:"הגדרות מקורות מראה"});
