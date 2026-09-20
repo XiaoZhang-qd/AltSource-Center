@@ -4,11 +4,13 @@
   "description": "AltSource Center provides a native iOS interface for browsing AltStore-compatible sources, apps, clients, IPA links, and source management tools.",
   "website": "https://xiaozhang-qd.github.io/AltSource-Center/web",
   "tintColor": "#007AFF",
+  "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
   "apps": [
     {
       "name": "AltSource Center",
       "bundleIdentifier": "com.xiaozhang.altsourcecenter",
       "developerName": "XiaoZhang-qd",
+      "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
       "subtitle": "Browse and manage AltStore-compatible sources",
       "localizedDescription": "An iOS AltSource catalog and browser with source management, app details, client URL schemes, IPA URL copying, multilingual UI, and light/dark/system themes.",
       "tintColor": "#007AFF",
