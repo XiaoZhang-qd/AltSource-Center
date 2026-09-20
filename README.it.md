@@ -1,3 +1,9 @@
+<div align="center">
+
+![AltSource Center](https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg)
+
+</div>
+
 # AltSource Center
 
 Un browser AltSource local-first basato su C11.
