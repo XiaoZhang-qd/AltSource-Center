@@ -74,3 +74,17 @@ Object.assign(ASC_I18N["pt"],{sourceVisibility:"Configurações de fontes espelh
 Object.assign(ASC_I18N["it"],{sourceVisibility:"Impostazioni delle fonti mirror"});
 Object.assign(ASC_I18N["ar"],{sourceVisibility:"إعدادات المصادر المرآة"});
 Object.assign(ASC_I18N["he"],{sourceVisibility:"הגדרות מקורות מראה"});
+Object.assign(ASC_I18N["en"],{hide:"Hide",show:"Show"});
+Object.assign(ASC_I18N["zh-Hans"],{hide:"隐藏",show:"显示"});
+Object.assign(ASC_I18N["zh-Hant"],{hide:"隱藏",show:"顯示"});
+Object.assign(ASC_I18N["ja"],{hide:"非表示",show:"表示"});
+Object.assign(ASC_I18N["ko"],{hide:"숨기기",show:"표시"});
+Object.assign(ASC_I18N["vi"],{hide:"Ẩn",show:"Hiện"});
+Object.assign(ASC_I18N["es"],{hide:"Ocultar",show:"Mostrar"});
+Object.assign(ASC_I18N["fr"],{hide:"Masquer",show:"Afficher"});
+Object.assign(ASC_I18N["de"],{hide:"Ausblenden",show:"Anzeigen"});
+Object.assign(ASC_I18N["ru"],{hide:"Скрыть",show:"Показать"});
+Object.assign(ASC_I18N["pt"],{hide:"Ocultar",show:"Mostrar"});
+Object.assign(ASC_I18N["it"],{hide:"Nascondi",show:"Mostra"});
+Object.assign(ASC_I18N["ar"],{hide:"إخفاء",show:"إظهار"});
+Object.assign(ASC_I18N["he"],{hide:"הסתרה",show:"הצגה"});
