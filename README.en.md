@@ -1,3 +1,9 @@
+<div align="center">
+
+![AltSource Center](web/assets/logo.svg)
+
+</div>
+
 # AltSource Center
 
 A C11-first, local-first AltSource browser for iPhone/iPad.
