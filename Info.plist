@@ -6,6 +6,9 @@
 <key>CFBundleName</key><string>AltSource Center</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleExecutable</key><string>AltSourceCenter</string>
+<key>CFBundleIcons</key><dict><key>CFBundlePrimaryIcon</key><dict><key>CFBundleIconFiles</key><array><string>AppIcon60x60</string><string>AppIcon76x76</string><string>AppIcon83.5x83.5</string><string>AppIcon1024x1024</string></array><key>UIPrerenderedIcon</key><false/></dict></dict>
+<key>CFBundleIcons~ipad</key><dict><key>CFBundlePrimaryIcon</key><dict><key>CFBundleIconFiles</key><array><string>AppIcon60x60</string><string>AppIcon76x76</string><string>AppIcon83.5x83.5</string><string>AppIcon1024x1024</string></array><key>UIPrerenderedIcon</key><false/></dict></dict>
+<key>CFBundleIconFiles</key><array><string>AppIcon60x60</string><string>AppIcon76x76</string><string>AppIcon83.5x83.5</string><string>AppIcon1024x1024</string></array>
 <key>CFBundleSupportedPlatforms</key><array><string>iPhoneOS</string></array>
 <key>MinimumOSVersion</key><string>13.0</string>
 <key>CFBundleShortVersionString</key><string>2.0.0</string>
