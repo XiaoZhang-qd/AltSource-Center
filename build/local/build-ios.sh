@@ -46,6 +46,20 @@ cp "$ROOT/Info.plist" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$WORK/Payload/AltSourceCenter.app/Info.plist"
 cp -R "$ROOT/web" "$WORK/Payload/AltSourceCenter.app/web"
+# Rasterize the project logo into real iOS PNG icon sizes for the IPA.
+MAGICK="$(command -v magick || true)"
+if [ -z "$MAGICK" ]; then
+  echo "ImageMagick (magick) is required to rasterize web/assets/logo.svg into AppIcon PNGs." >&2
+  exit 1
+fi
+ICON_SRC="$ROOT/web/assets/logo.svg"
+"$MAGICK" "$ICON_SRC" -background none -resize 60x60! "$WORK/Payload/AltSourceCenter.app/AppIcon60x60.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 120x120! "$WORK/Payload/AltSourceCenter.app/AppIcon60x60@2x.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 180x180! "$WORK/Payload/AltSourceCenter.app/AppIcon60x60@3x.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 76x76! "$WORK/Payload/AltSourceCenter.app/AppIcon76x76.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 152x152! "$WORK/Payload/AltSourceCenter.app/AppIcon76x76@2x.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 167x167! "$WORK/Payload/AltSourceCenter.app/AppIcon83.5x83.5@2x.png"
+"$MAGICK" "$ICON_SRC" -background none -resize 1024x1024! "$WORK/Payload/AltSourceCenter.app/AppIcon1024x1024.png"
 # Bundle real iOS AppIcon PNGs so the generated IPA has a Home Screen icon.
 for icon in "$ROOT"/build/appicon/*.png; do
   [ -f "$icon" ] || continue
