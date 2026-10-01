@@ -1,53 +1,174 @@
 {
   "name": "AltSource Center",
-  "subtitle": "AltSource catalog and source browser for iOS",
-  "description": "AltSource Center provides a native iOS interface for browsing AltStore-compatible sources, apps, clients, IPA links, and source management tools.",
+  "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
   "website": "https://xiaozhang-qd.github.io/AltSource-Center/web",
   "tintColor": "#007AFF",
-  "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
+  "featuredApps": [
+    "com.xiaozhang.altsourcecenter"
+  ],
   "apps": [
     {
       "name": "AltSource Center",
       "bundleIdentifier": "com.xiaozhang.altsourcecenter",
       "developerName": "XiaoZhang-qd",
-      "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
-      "subtitle": "Browse and manage AltStore-compatible sources",
       "localizedDescription": "An iOS AltSource catalog and browser with source management, app details, client URL schemes, IPA URL copying, multilingual UI, and light/dark/system themes.",
+      "iconURL": "https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg",
       "tintColor": "#007AFF",
       "category": "utilities",
+      "screenshots": {
+        "iphone": [],
+        "ipad": []
+      },
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
       "versions": [
         {
-          "version": "2.0.3",
+          "version": "2.0.4-16.5",
           "buildVersion": "2",
-          "date": "2026-09-20T00:51:42Z",
-          "localizedDescription": "AltSource Center 2.0.3.",
-          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-13.7-arm64.ipa",
-          "size": 43215,
+          "date": "2026-09-21T10:37:41.000Z",
+          "localizedDescription": "AltSource Center 2.0.4 (SDK 16.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.4/AltSourceCenter-iOS-16.5-arm64.ipa",
+          "size": 492824,
           "minOSVersion": "13.0"
         },
         {
-          "version": "2.0.1",
+          "version": "2.0.4-14.5",
           "buildVersion": "2",
-          "date": "2026-09-19T14:48:39Z",
-          "localizedDescription": "AltSource Center 2.0.1.",
+          "date": "2026-09-21T10:37:41.000Z",
+          "localizedDescription": "AltSource Center 2.0.4 (SDK 14.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.4/AltSourceCenter-iOS-14.5-arm64.ipa",
+          "size": 492794,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.4-13.7",
+          "buildVersion": "2",
+          "date": "2026-09-21T10:37:41.000Z",
+          "localizedDescription": "AltSource Center 2.0.4 (SDK 13.7).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.4/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 492752,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.3-16.5",
+          "buildVersion": "2",
+          "date": "2026-09-20T00:51:42.000Z",
+          "localizedDescription": "AltSource Center 2.0.3 (SDK 16.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-16.5-arm64.ipa",
+          "size": 44596,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.3-15.6",
+          "buildVersion": "2",
+          "date": "2026-09-20T00:51:42.000Z",
+          "localizedDescription": "AltSource Center 2.0.3 (SDK 15.6).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-15.6-arm64.ipa",
+          "size": 44594,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.3-14.5",
+          "buildVersion": "2",
+          "date": "2026-09-20T00:51:42.000Z",
+          "localizedDescription": "AltSource Center 2.0.3 (SDK 14.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-14.5-arm64.ipa",
+          "size": 44561,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.3-13.7",
+          "buildVersion": "2",
+          "date": "2026-09-20T00:51:42.000Z",
+          "localizedDescription": "AltSource Center 2.0.3 (SDK 13.7).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.3/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 44518,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.1-16.5",
+          "buildVersion": "2",
+          "date": "2026-09-19T14:48:39.000Z",
+          "localizedDescription": "AltSource Center 2.0.1 (SDK 16.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.1/AltSourceCenter-iOS-16.5-arm64.ipa",
+          "size": 35866,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.1-15.6",
+          "buildVersion": "2",
+          "date": "2026-09-19T14:48:39.000Z",
+          "localizedDescription": "AltSource Center 2.0.1 (SDK 15.6).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.1/AltSourceCenter-iOS-15.6-arm64.ipa",
+          "size": 35862,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.1-14.5",
+          "buildVersion": "2",
+          "date": "2026-09-19T14:48:39.000Z",
+          "localizedDescription": "AltSource Center 2.0.1 (SDK 14.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.1/AltSourceCenter-iOS-14.5-arm64.ipa",
+          "size": 35836,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.1-13.7",
+          "buildVersion": "2",
+          "date": "2026-09-19T14:48:39.000Z",
+          "localizedDescription": "AltSource Center 2.0.1 (SDK 13.7).",
           "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.1/AltSourceCenter-iOS-13.7-arm64.ipa",
           "size": 35812,
           "minOSVersion": "13.0"
         },
         {
-          "version": "2.0.0",
+          "version": "2.0.0-16.5",
           "buildVersion": "2",
-          "date": "2026-09-19T02:07:44Z",
-          "localizedDescription": "AltSource Center 2.0.0.",
+          "date": "2026-09-19T02:07:44.000Z",
+          "localizedDescription": "AltSource Center 2.0.0 (SDK 16.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.0/AltSourceCenter-iOS-16.5-arm64.ipa",
+          "size": 43296,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.0-15.6",
+          "buildVersion": "2",
+          "date": "2026-09-19T02:07:44.000Z",
+          "localizedDescription": "AltSource Center 2.0.0 (SDK 15.6).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.0/AltSourceCenter-iOS-15.6-arm64.ipa",
+          "size": 43294,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.0-14.5",
+          "buildVersion": "2",
+          "date": "2026-09-19T02:07:44.000Z",
+          "localizedDescription": "AltSource Center 2.0.0 (SDK 14.5).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.0/AltSourceCenter-iOS-14.5-arm64.ipa",
+          "size": 43261,
+          "minOSVersion": "13.0"
+        },
+        {
+          "version": "2.0.0-13.7",
+          "buildVersion": "2",
+          "date": "2026-09-19T02:07:44.000Z",
+          "localizedDescription": "AltSource Center 2.0.0 (SDK 13.7).",
           "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/v2.0.0/AltSourceCenter-iOS-13.7-arm64.ipa",
           "size": 43214,
           "minOSVersion": "13.0"
+        },
+        {
+          "version": "1.0.0",
+          "buildVersion": "1",
+          "date": "2026-10-01T15:30:00.000Z",
+          "localizedDescription": "AltSource Center 1.0.0 (beta).",
+          "downloadURL": "https://github.com/XiaoZhang-qd/AltSource-Center/releases/download/vbeta/AltSourceCenter-iOS-13.7-arm64.ipa",
+          "size": 43214,
+          "minOSVersion": "13.0"
         }
-      ],
-      "appPermissions": {
-        "entitlements": [],
-        "privacy": {}
-      }
+      ]
     }
   ],
   "news": []

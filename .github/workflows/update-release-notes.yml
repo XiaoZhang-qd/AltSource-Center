@@ -25,7 +25,7 @@ jobs:
           TAG="$(gh release list --repo "$REPO" --limit 1 --json tagName --jq '.[0].tagName')"
           VERSION="${TAG#v}"
           ASSETS="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].url' 2>/dev/null || true)"
-          SOURCE_URL="https://xiaozhang-qd.github.io/AltSource-Center/source.json"
+          SOURCE_URL="https://xiaozhang-qd.github.io/AltSource-Center/web/source.json"
           IPA="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[0].browser_download_url' 2>/dev/null || true)"
           IPA_SIZE="$(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[0].size')"
           IPA_DATE="$(gh release view "$TAG" --repo "$REPO" --json publishedAt --jq '.publishedAt')"

@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 ![AltSource Center](https://cdn.jsdelivr.net/gh/XiaoZhang-qd/AltSource-Center@main/web/assets/logo.svg)
 
@@ -8,29 +8,29 @@
 
 # AltSource Center
 
-C11-first, local-first AltSource browser for iPhone/iPad. The UI is bundled into the IPA itself and is designed to feel more like an F-Droid-style software catalog: **Sources → Apps → Details → Get / Add Source**.
+Trình duyệt AltSource cho iPhone/iPad, ưu tiên C11 và cục bộ. Giao diện được đóng gói hoàn toàn trong IPA và được thiết kế giống danh mục phần mềm kiểu F-Droid: **Nguồn → Ứng dụng → Chi tiết → Lấy / Thêm nguồn**.
 
-## What changed
+## Những thay đổi
 
-This repository now combines the original AltSource Center native shell with the useful interaction model of AltDirect and AltSource Viewer:
+Kho lưu trữ này hiện kết hợp vỏ bọc native gốc của AltSource Center với mô hình tương tác hữu ích của AltDirect và AltSource Viewer:
 
-- Local source library.
-- Add Source button and source details.
-- Apps page with search.
-- Per-app Get flow.
-- Separate Add Source flow.
-- URL-client page with editable handler registry.
-- English / 简体中文 / 繁體中文 and additional UI languages.
-- Local export/import of the source library.
-- The IPA contains the complete `web/` front end; it is not a remote website packaged as a link.
-- C11 core remains responsible for the handler model; iOS uses a small UIKit/WebKit bridge.
-- Home page includes a button to copy the current Web URL and a link to GitHub Releases.
+- Thư viện nguồn cục bộ.
+- Nút Thêm Nguồn và chi tiết nguồn.
+- Trang ứng dụng có tìm kiếm.
+- Luồng Lấy cho từng ứng dụng.
+- Luồng Thêm Nguồn riêng biệt.
+- Trang khách hàng URL với sổ đăng ký trình xử lý có thể chỉnh sửa.
+- Hỗ trợ English / 简体中文 / 繁體中文 và nhiều ngôn ngữ giao diện khác.
+- Xuất/nhập cục bộ thư viện nguồn.
+- IPA chứa toàn bộ front-end `web/`; không phải gói một liên kết trang web từ xa.
+- Lõi C11 vẫn chịu trách nhiệm cho mô hình trình xử lý; iOS dùng cầu nối UIKit/WebKit nhỏ.
+- Trang chủ có nút sao chép URL Web hiện tại và liên kết đến GitHub Releases.
 
-## URL protocol support
+## Hỗ trợ giao thức URL
 
-The project is deliberately configuration-driven. There is no single authoritative list of every AltSource-compatible client, and source support does not imply IPA-install support. URL schemes may change between client versions.
+Dự án cố ý điều khiển bằng cấu hình. Không có danh sách chính thức duy nhất cho mọi khách hàng tương thích AltSource, và hỗ trợ nguồn không ngụ ý hỗ trợ cài đặt IPA. Giao thức URL có thể thay đổi giữa các phiên bản khách hàng.
 
-Current source handlers include:
+Các trình xử lý nguồn hiện tại:
 
 - AltStore Classic — `altstore-classic://source?url=...`
 - SideStore — `sidestore://source?url=...`
@@ -44,7 +44,7 @@ Current source handlers include:
 - GBox — `gbox://AddSource/...`
 - KravaSigner — `kravasigner://addRepo=...`
 
-Install URL actions are exposed only where a documented implementation supports them:
+Các hành động URL cài đặt chỉ được cung cấp khi có triển khai được tài liệu hóa hỗ trợ:
 
 - AltStore — `altstore://install?url=...`
 - SideStore — `sidestore://install?url=...`
@@ -52,15 +52,15 @@ Install URL actions are exposed only where a documented implementation supports 
 - ESign — `esign://install?url=...`
 - Ksign — `ksign://install?url=...`
 
-The editable registry is at `src/resources/url_handlers.json`. The web UI mirrors the same list in `web/js/app.js`.
+Sổ đăng ký có thể chỉnh sửa nằm tại `src/resources/url_handlers.json`. Giao diện Web sử dụng cùng danh sách trong `web/js/app.js`.
 
-## Release Notes
+## Ghi chú phát hành
 
-After each successful iOS build Action, the release notes are updated with the available source URL schemes and IPA URL schemes.
+Sau mỗi lần Action xây dựng iOS thành công, ghi chú phát hành sẽ được cập nhật với các giao thức URL nguồn và IPA có sẵn.
 
-## Local build with Theos SDKs
+## Xây dựng cục bộ với Theos SDK
 
-The SDK collection is expected at `$THEOS_SDKS` or `$HOME/theos/sdks`.
+Bộ SDK được kỳ vọng tại `$THEOS_SDKS` hoặc `$HOME/theos/sdks`.
 
 ```bash
 git clone --depth 1 https://github.com/theos/sdks.git ~/theos/sdks
@@ -70,66 +70,66 @@ export THEOS_SDKS="$HOME/theos/sdks"
 ./build/local/build-ios.sh --sdk 18.6 --target 13.0 --arch arm64
 ```
 
-The local script lets you select the device SDK version and deployment target. It produces an ad-hoc IPA by default; use your own signing identity with `--sign` when appropriate.
+Script cục bộ cho phép bạn chọn phiên bản SDK thiết bị và mục tiêu triển khai. Nó tạo IPA ad-hoc mặc định; sử dụng định danh ký của riêng bạn với `--sign` khi cần.
 
 ## GitHub Actions
 
-The IPA workflow is **manual only**. There is no push or pull-request trigger.
+Quy trình IPA là **chỉ thủ công**. Không có trigger push hoặc pull-request.
 
-Go to:
+Vào:
 
 **Actions → Build iOS IPAs (manual) → Run workflow**
 
-The workflow:
+Quy trình:
 
-1. Checks out this repository.
-2. Checks out `theos/sdks`.
-3. Finds every available `iPhoneOS*.sdk`.
-4. Builds an arm64 IPA for each device SDK.
-5. Creates or updates the GitHub Release and uploads the generated IPAs.
-6. After a successful build, updates the release notes with source and IPA URL protocol information.
+1. Kiểm tra kho lưu trữ này.
+2. Kiểm tra `theos/sdks`.
+3. Tìm mọi `iPhoneOS*.sdk` có sẵn.
+4. Xây dựng IPA arm64 cho mỗi SDK thiết bị.
+5. Tạo hoặc cập nhật GitHub Release và tải lên các IPA đã tạo.
+6. Sau khi xây dựng thành công, cập nhật ghi chú phát hành với thông tin giao thức URL nguồn và IPA.
 
 ## GitHub Pages
 
-The Pages workflow is also manual-only. It publishes the `web/` directory when you explicitly run the workflow.
+Quy trình Pages cũng chỉ chạy thủ công. Nó xuất bản thư mục `web/` khi bạn chạy quy trình một cách rõ ràng.
 
-Web interface: https://xiaozhang-qd.github.io/AltSource-Center/web
+Giao diện Web: https://xiaozhang-qd.github.io/AltSource-Center/web
 
-## Upstream references
+## Tham chiếu upstream
 
-The feature design was informed by:
+Thiết kế tính năng được tham khảo từ:
 
 - AltDirect: https://github.com/StikDebug/altdirect
 - AltSource Viewer: https://github.com/therealFoxster/altsource-viewer
 - Theos SDKs: https://github.com/theos/sdks
 
-This repository is a clean-room implementation. Third-party names and URL schemes are referenced for compatibility; third-party branding/assets are not required by the implementation.
+Kho lưu trữ này là triển khai clean-room. Tên và giao thức URL bên thứ ba được tham chiếu cho khả năng tương thích; triển khai không yêu cầu thương hiệu/tài sản bên thứ ba.
 
-## Important limitation
+## Giới hạn quan trọng
 
-This app is a **URL launcher/catalog**, not a signing engine. Tapping Get or Add Source invokes the selected client's URL scheme (or opens the hosted IPA). The actual signing/install behavior belongs to that client.
+Ứng dụng này là **trình khởi chạy/danh mục URL**, không phải công cụ ký. Nhấn Lấy hoặc Thêm Nguồn sẽ gọi giao thức URL của khách hàng đã chọn (hoặc mở IPA được lưu trữ). Hành vi ký/cài đặt thực tế thuộc về khách hàng đó.
 
-## License
+## Giấy phép
 
 MIT.
 
 ## Liên kết trực tiếp
 
-Mirror source: https://xiaozhang-qd.github.io/AltSource-Center/source.json
+Mirror source: https://xiaozhang-qd.github.io/AltSource-Center/web/source.json
 
 ### Nhập nguồn mirror
 
-- [AltStore Classic](altstore-classic://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [SideStore](sidestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [Feather](feather://source/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [LiveContainer](livecontainer://sources?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [StikStore](stikstore://add-source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [TrollApps](trollapps://add?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [FlareStore](flarestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [ESign](esign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [Ksign](ksign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [GBox](gbox://AddSource/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
-- [KravaSigner](kravasigner://addRepo=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fsource.json)
+- [AltStore Classic](altstore-classic://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [SideStore](sidestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [Feather](feather://source/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [LiveContainer](livecontainer://sources?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [StikStore](stikstore://add-source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [TrollApps](trollapps://add?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [FlareStore](flarestore://source?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [ESign](esign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [Ksign](ksign://addsource?url=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [GBox](gbox://AddSource/https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
+- [KravaSigner](kravasigner://addRepo=https%3A%2F%2Fxiaozhang-qd.github.io%2FAltSource-Center%2Fweb%2Fsource.json)
 
 ### Cài đặt IPA
 
