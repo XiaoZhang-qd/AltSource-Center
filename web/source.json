@@ -171,5 +171,11 @@
       ]
     }
   ],
-  "news": []
+  "news": [
+    {
+      "title": "AltSource Center 1.0.0",
+      "date": "2026-10-01T15:30:00.000Z",
+      "localizedDescription": "AltSource Center 1.0.0 (beta) is now available!"
+    }
+  ]
 }
