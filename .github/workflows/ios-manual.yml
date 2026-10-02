@@ -6,7 +6,7 @@ name: Build iOS IPAs
       version:
         description: "Release version"
         required: true
-        default: "2.0.0"
+        default: "Deta"
         type: string
       deployment_target:
         description: "Minimum iOS version"
