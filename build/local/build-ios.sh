@@ -33,8 +33,8 @@ if [ -z "$SDK" ]; then
 fi
 [ -n "$SDK" ] || { echo "No iPhoneOS SDK found." >&2; exit 1; }
 case "$VERSION" in
-  *.*.*) ;;
-  *) echo "Invalid app version: $VERSION (expected x.y.z)" >&2; exit 2 ;;
+  Deta|*.*.*) ;;
+  *) echo "Invalid app version: $VERSION (expected Deta or x.y.z)" >&2; exit 2 ;;
 esac
 SDKPATH="$SDKROOT/iPhoneOS$SDK.sdk"
 [ -d "$SDKPATH" ] || { echo "SDK not found: $SDKPATH" >&2; exit 1; }
